@@ -1,0 +1,19 @@
+{
+  "image": "ghcr.io/mrsimonemms/devcontainers/full",
+  "name": "devcontainer",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/temporal-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode"
+      ],
+      "settings": {}
+    }
+  },
+  "forwardPorts": [
+    3000,
+    8233
+  ]
+}

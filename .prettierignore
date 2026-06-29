@@ -1,0 +1,12 @@
+*.md
+*.yml
+*.yaml
+*.json
+.DS_Store
+dist
+node_modules
+.env
+.env*
+!.env.examples
+package-lock.json
+.prettierrc

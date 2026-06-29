@@ -1,0 +1,30 @@
+{
+  "name": "temporal-playwright-example",
+  "version": "0.0.0",
+  "description": "Use Temporal to orchestrate Playwright end-to-end tests",
+  "author": "Simon Emms <simon@simonemms.com>",
+  "private": true,
+  "license": "Apache-2.0",
+  "main": "dist/src/server.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint .",
+    "start": "node ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fastify": "^5.9.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^26.0.1",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.3",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.0"
+  }
+}
