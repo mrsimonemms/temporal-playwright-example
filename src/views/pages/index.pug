@@ -7,11 +7,11 @@ block content
     ul
       li
         strong ID:
-        |  #{user.id}
+        span(data-testid="user-id") #{user.id}
       li
         strong Name:
-        |  #{user.name}
+        span(data-testid="user-name") #{user.name}
       li
         strong Email:
-        |  #{user.email}
-    a.button.is-primary(href="/logout") Logout
+        span(data-testid="user-email") #{user.email}
+    a.button.is-primary(href="/logout" data-testid="logout-button") Logout

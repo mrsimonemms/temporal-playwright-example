@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import 'fastify';
+import { type Page } from '@playwright/test';
 
-import { type IUser } from './interfaces/users';
-
-declare module 'fastify' {
-  interface FastifyRequest {
-    user?: IUser;
-  }
-}
-
-declare module '@fastify/secure-session' {
-  interface SessionData {
-    error?: string;
-    user?: IUser;
-  }
+/**
+ * Fill in the login form and submit it. The form fields are targeted by their
+ * application-owned IDs and the submit button by its test ID, so the helper is
+ * resilient to copy or styling changes.
+ */
+export async function submitLogin(page: Page, email: string, password: string) {
+  await page.locator('#email').fill(email);
+  await page.locator('#password').fill(password);
+  await page.getByTestId('login-submit').click();
 }

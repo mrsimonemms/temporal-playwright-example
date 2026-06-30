@@ -1,0 +1,72 @@
+name: Playwright Tests
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+env:
+  PLAYWRIGHT_SIMULATED_FLAKY_PERCENTAGE: 33 # Simulate flaky tests
+  TEMPORAL_ADDRESS: ${{ secrets.TEMPORAL_ADDRESS }}
+  TEMPORAL_API_KEY: ${{ secrets.TEMPORAL_API_KEY }}
+  TEMPORAL_NAMESPACE: ${{ vars.TEMPORAL_NAMESPACE }}
+  TEMPORAL_TLS_ENABLED: ${{ vars.TEMPORAL_TLS_ENABLED }}
+  TEMPORAL_TASK_QUEUE: e2e-${{ github.run_id }}-${{ github.run_attempt }}
+  TEMPORAL_WORKFLOW_ID: playwright-${{ github.run_id }}-${{ github.run_attempt }}
+jobs:
+  workers:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        worker:
+          - 1
+          - 2
+          - 3
+    container:
+      image: mcr.microsoft.com/playwright:v1.61.0-noble
+      options: --user 1001
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start Temporal workers
+        run: npm run temporal:worker:ci
+
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-worker-${{ matrix.worker }}
+          path: playwright-report/
+          retention-days: 30
+
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+
+      - name: Install Temporal CLI
+        uses: temporalio/setup-temporal@v0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run temporal:start
+
+      - name: Cancel Temporal workflow on failure
+        if: ${{ failure() || cancelled() }}
+        run: temporal workflow cancel --workflow-id "$TEMPORAL_WORKFLOW_ID"

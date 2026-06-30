@@ -8,7 +8,7 @@ block content
           .column.is-5-tablet.is-4-desktop.is-3-widescreen
             if err
               article.message.is-danger
-                .message-body #{err}
+                .message-body(data-testid="login-error") #{err}
 
             form.box(method="post")
               .field
@@ -26,4 +26,4 @@ block content
                     i.mdi.mdi-lock
 
               .field
-                button.button.is-success(type="submit") Login
+                button.button.is-success(type="submit" data-testid="login-submit") Login

@@ -2,18 +2,25 @@
   "image": "ghcr.io/mrsimonemms/devcontainers/full",
   "name": "devcontainer",
   "features": {
+    "ghcr.io/postfinance/devcontainer-features/playwright-deps:1.0.0": {},
     "ghcr.io/devcontainers-extra/features/temporal-cli:1": {}
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        "esbenp.prettier-vscode"
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright"
       ],
       "settings": {}
     }
   },
   "forwardPorts": [
     3000,
-    8233
-  ]
+    8233,
+    9323
+  ],
+  "postStartCommand": {
+    "playwright-browsers": "npx playwright install",
+    "playwright-deps": "npx playwright install-deps"
+  }
 }

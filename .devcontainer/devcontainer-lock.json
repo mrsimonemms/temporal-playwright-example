@@ -4,6 +4,11 @@
       "version": "1.0.7",
       "resolved": "ghcr.io/devcontainers-extra/features/temporal-cli@sha256:275980d00e6e4d291d1e71a7f94a7d4c70e4d0cb82e3a7e0db04a6b3b0390761",
       "integrity": "sha256:275980d00e6e4d291d1e71a7f94a7d4c70e4d0cb82e3a7e0db04a6b3b0390761"
+    },
+    "ghcr.io/postfinance/devcontainer-features/playwright-deps:1.0.0": {
+      "version": "1.0.0",
+      "resolved": "ghcr.io/postfinance/devcontainer-features/playwright-deps@sha256:1fbd235678d55637ddfb93c800249e48ae72af36cb382297ff3a22bab8945acb",
+      "integrity": "sha256:1fbd235678d55637ddfb93c800249e48ae72af36cb382297ff3a22bab8945acb"
     }
   }
 }

@@ -19,34 +19,10 @@ import fastifyView from '@fastify/view';
 import fastify from 'fastify';
 import pug from 'pug';
 
-export interface IUser {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-}
+import { users } from './data/users';
+import { type IUser } from './interfaces/users';
 
-export interface ISession {
-  error?: string;
-  user?: IUser;
-}
-
-const users: IUser[] = [
-  {
-    id: 1,
-    name: 'User 1',
-    email: 'user1@temporal.io',
-    password: 'q1w2e3r4',
-  },
-  {
-    id: 2,
-    name: 'User 2',
-    email: 'user2@temporal.io',
-    password: 'q1w2e3r4',
-  },
-];
-
-async function main() {
+async function main(): Promise<void> {
   const server = fastify({
     logger: true,
   });

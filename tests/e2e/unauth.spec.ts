@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import 'fastify';
+import { expect, test } from '@playwright/test';
 
-import { type IUser } from './interfaces/users';
+import { submitLogin } from '../setup/login';
 
-declare module 'fastify' {
-  interface FastifyRequest {
-    user?: IUser;
-  }
-}
+// Do as a separate spec to show the fan-out of each spec file
+test('failed login shows an authentication error', async ({ page }) => {
+  await page.goto('/login');
 
-declare module '@fastify/secure-session' {
-  interface SessionData {
-    error?: string;
-    user?: IUser;
-  }
-}
+  await submitLogin(page, 'invalid@temporal.io', 'anypassword');
+
+  // An invalid login keeps the user on the login page with an error message.
+  await expect(page).toHaveURL('/login');
+  await expect(page.getByTestId('login-error')).toBeVisible();
+});

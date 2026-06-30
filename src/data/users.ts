@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import 'fastify';
+import { type IUser } from '../interfaces/users';
 
-import { type IUser } from './interfaces/users';
-
-declare module 'fastify' {
-  interface FastifyRequest {
-    user?: IUser;
-  }
-}
-
-declare module '@fastify/secure-session' {
-  interface SessionData {
-    error?: string;
-    user?: IUser;
-  }
-}
+export const users: IUser[] = [
+  {
+    id: 1,
+    name: 'User 1',
+    email: 'user1@temporal.io',
+    password: 'q1w2e3r4',
+  },
+  {
+    id: 2,
+    name: 'User 2',
+    email: 'user2@temporal.io',
+    password: 'q1w2e3r4',
+  },
+];

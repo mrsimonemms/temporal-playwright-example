@@ -12,20 +12,32 @@
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
     "start": "node ./",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "temporal:worker": "tsx tests/temporal/worker.ts",
+    "temporal:worker:ci": "tsx tests/temporal/worker-ci.ts",
+    "temporal:start": "tsx tests/temporal/client.ts",
+    "test": "playwright test",
+    "test:report": "playwright show-report --host 0.0.0.0"
   },
   "dependencies": {
     "@fastify/formbody": "^8.0.2",
     "@fastify/secure-session": "^8.3.0",
     "@fastify/view": "^12.0.0",
+    "@temporalio/activity": "^1.18.1",
+    "@temporalio/client": "^1.18.1",
+    "@temporalio/common": "^1.18.1",
+    "@temporalio/envconfig": "^1.18.1",
+    "@temporalio/worker": "^1.18.1",
+    "@temporalio/workflow": "^1.18.1",
     "fastify": "^5.9.0",
     "pug": "^3.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.61.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^26.0.1",
     "@types/pug": "^2.0.10",
     "eslint": "^10.6.0",
+    "fast-glob": "^3.3.3",
     "globals": "^17.7.0",
     "prettier": "^3.9.3",
     "tsx": "^4.22.4",

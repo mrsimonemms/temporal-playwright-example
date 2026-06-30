@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import 'fastify';
 
-import { type IUser } from './interfaces/users';
-
-declare module 'fastify' {
-  interface FastifyRequest {
-    user?: IUser;
-  }
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
 }
 
-declare module '@fastify/secure-session' {
-  interface SessionData {
-    error?: string;
-    user?: IUser;
-  }
+export interface ISession {
+  error?: string;
+  user?: IUser;
 }
