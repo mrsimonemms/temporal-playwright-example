@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block content
+  .content
+    p Hello #{user.name}
+    p This is a simple message page to indicate that you're logged in.
+    ul
+      li
+        strong ID:
+        |  #{user.id}
+      li
+        strong Name:
+        |  #{user.name}
+      li
+        strong Email:
+        |  #{user.email}
+    a.button.is-primary(href="/logout") Logout

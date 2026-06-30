@@ -1,0 +1,14 @@
+- title= title ?? "Untitled page"
+
+doctype html
+html
+  head
+    title #{title} | My Brilliant App
+
+    include ../components/header.pug
+
+  body
+    .container
+      h1.is-size-1 #{title}
+
+      block content

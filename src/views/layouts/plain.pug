@@ -1,0 +1,11 @@
+- title= title ?? "Untitled page"
+
+doctype html
+html
+  head
+    title #{title} | My Brilliant App
+
+    include ../components/header.pug
+
+  body
+    block content

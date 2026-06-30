@@ -15,11 +15,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "fastify": "^5.9.0"
+    "@fastify/formbody": "^8.0.2",
+    "@fastify/secure-session": "^8.3.0",
+    "@fastify/view": "^12.0.0",
+    "fastify": "^5.9.0",
+    "pug": "^3.0.4"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^26.0.1",
+    "@types/pug": "^2.0.10",
     "eslint": "^10.6.0",
     "globals": "^17.7.0",
     "prettier": "^3.9.3",

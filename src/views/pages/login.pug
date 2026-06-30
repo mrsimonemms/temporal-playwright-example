@@ -1,0 +1,29 @@
+extends ../layouts/plain
+
+block content
+  section.hero.is-primary.is-fullheight
+    .hero-body
+      .container
+        .columns.is-centered
+          .column.is-5-tablet.is-4-desktop.is-3-widescreen
+            if err
+              article.message.is-danger
+                .message-body #{err}
+
+            form.box(method="post")
+              .field
+                label.label(for="email") Email
+                .control.has-icons-left
+                  input#email(type="email" name="email" placeholder="eg, user1@temporal.io" required).input
+                  span.icon.is-small.is-left
+                    i.mdi.mdi-email
+
+              .field
+                label.label(for="password") Password
+                .control.has-icons-left
+                  input#password(type="password" name="password" placeholder="********" required).input
+                  span.icon.is-small.is-left
+                    i.mdi.mdi-lock
+
+              .field
+                button.button.is-success(type="submit") Login
